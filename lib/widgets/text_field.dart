@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class GTextField extends StatelessWidget {
-  final int? value;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String hintText;
@@ -12,13 +11,12 @@ class GTextField extends StatelessWidget {
     this.suffixIcon,
     required this.hintText,
     required this.controller,
-    this.value,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: ValueKey(value),
+      controller: controller,
       decoration: InputDecoration(
         hintText: hintText,
         contentPadding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),

@@ -12,7 +12,7 @@ class NewTask extends StatefulWidget {
 }
 
 class _NewTaskState extends State<NewTask> {
-  final GlobalKey<FormState> formKey = GlobalKey();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final List<TextEditingController> controllers = [];
   final TextEditingController titleController = TextEditingController();
   @override
@@ -80,7 +80,6 @@ class _NewTaskState extends State<NewTask> {
                     children: [
                       for (var ctrl in controllers) ...[
                         GTextField(
-                          value: controllers.indexOf(ctrl),
                           hintText: 'Todo ${controllers.indexOf(ctrl) + 1}',
                           prefixIcon: Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -113,6 +112,7 @@ class _NewTaskState extends State<NewTask> {
                                 onPressed: () {
                                   setState(() {
                                     addTextField();
+                                    debugPrint(controllers.first.text);
                                   });
                                 },
                                 child: const Row(

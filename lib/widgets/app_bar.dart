@@ -28,7 +28,6 @@ class GAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       actions: [
         IconButton(
-          padding: const EdgeInsets.only(right: 20),
           onPressed: () {},
           icon: SvgPicture.asset(GImageStrings.setting),
         )
