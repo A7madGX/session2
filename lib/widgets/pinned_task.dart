@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:gdsc_session2/entities/task_item_entity.dart';
 import 'package:gdsc_session2/widgets/text_item.dart';
 
 import '../constants/image_strings.dart';
 
 class PinnedTask extends StatelessWidget {
+  final TaskItemEntity pinnedTask;
   const PinnedTask({
     super.key,
+    required this.pinnedTask,
   });
 
   @override
@@ -23,7 +26,7 @@ class PinnedTask extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Study for finals.',
+                pinnedTask.taskTitle,
                 style: Theme.of(context).textTheme.titleLarge!.apply(
                       fontWeightDelta: 1,
                       fontSizeDelta: 2,
@@ -42,36 +45,17 @@ class PinnedTask extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    TextItem(
-                      text: 'Review lectures',
-                      finished: true,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextItem(
-                      text: 'Review personal notes',
-                      finished: false,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextItem(
-                      text: 'Solve past exams',
-                      finished: false,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    TextItem(
-                      text: 'Make short summaries',
-                      finished: false,
-                    )
+                    for (var todo in pinnedTask.todos) ...[
+                      TextItem(text: todo, finished: false),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                    ]
                   ],
                 ),
               ),

@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gdsc_session2/constants/image_strings.dart';
 import 'package:gdsc_session2/entities/task_item_entity.dart';
+import 'package:gdsc_session2/providers/task_provider.dart';
 import 'package:gdsc_session2/widgets/progress_bar.dart';
+import 'package:pie_menu/pie_menu.dart';
+import 'package:provider/provider.dart';
 
 class TaskItem extends StatelessWidget {
   final TaskItemEntity task;
@@ -24,7 +29,7 @@ class TaskItem extends StatelessWidget {
                   task.taskTitle,
                   style: Theme.of(context).textTheme.titleMedium!.apply(fontWeightDelta: 4),
                 ),
-                Text('${task.numberOfTasks} Tasks', style: Theme.of(context).textTheme.bodySmall),
+                Text('${task.todos.length} Tasks', style: Theme.of(context).textTheme.bodySmall),
               ],
             ),
           ),
@@ -34,9 +39,30 @@ class TaskItem extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          GestureDetector(
+          PieMenu(
+            theme: const PieTheme(
+              brightness: Brightness.dark,
+            ),
+            actions: [
+              PieAction(
+                tooltip: const Text('Pinned'),
+                onSelect: () {
+                  context.read<TaskProvider>().pinTask(task);
+                },
+                child: SvgPicture.asset(
+                  GImageStrings.pin,
+                  color: Colors.white,
+                ),
+              ),
+              PieAction(
+                tooltip: const Text('Deleted'),
+                onSelect: () {
+                  context.read<TaskProvider>().removeTask(task);
+                },
+                child: const Icon(Icons.clear),
+              ),
+            ],
             child: const Icon(Icons.more_vert_rounded),
-            onTap: () {},
           )
         ],
       ),
