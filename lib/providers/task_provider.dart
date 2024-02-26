@@ -21,26 +21,10 @@ class TaskProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  LinearGradient gradient = const LinearGradient(colors: [Colors.transparent, Colors.transparent]);
-  bool handleNotification(BuildContext context, ScrollNotification notification) {
-    final ScrollMetrics metrics = notification.metrics;
-    if (metrics.extentAfter != 0.0) {
-      // There is content after. Shadow on bottom.
-      gradient = LinearGradient(
-        colors: [
-          Colors.transparent,
-          Theme.of(context).scaffoldBackgroundColor,
-        ],
-        stops: const [0.8, 1],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      );
-    } else {
-      gradient = const LinearGradient(colors: [Colors.transparent, Colors.transparent]);
-    }
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      notifyListeners();
-    });
-    return false;
+  ScrollController scrollController = ScrollController();
+  double opacity = 1;
+  void changeOpacity(double value) {
+    opacity = 1 - value / scrollController.position.maxScrollExtent;
+    notifyListeners();
   }
 }

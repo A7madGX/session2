@@ -26,7 +26,17 @@ class _TodoScreenState extends State<TodoScreen> {
           duration: Duration(milliseconds: 200),
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           foregroundDecoration: BoxDecoration(
-            gradient: context.watch<TaskProvider>().gradient,
+            gradient: LinearGradient(
+              colors: [
+                Colors.transparent,
+                Theme.of(context)
+                    .scaffoldBackgroundColor
+                    .withOpacity(context.watch<TaskProvider>().opacity),
+              ],
+              stops: const [0.7, 1],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
           child: Column(
             children: [
