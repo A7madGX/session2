@@ -121,27 +121,28 @@ class _NewTaskState extends State<NewTask> {
                         SizedBox(
                           width: 200,
                           child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue.withOpacity(0.2),
-                              ),
-                              onPressed: () {
-                                setState(() {
-                                  addTextField();
-                                });
-                              },
-                              child: const Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.add_circle),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Add',
-                                    style: TextStyle(color: Colors.white),
-                                  )
-                                ],
-                              )),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue.withOpacity(0.2),
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                addTextField();
+                              });
+                            },
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(Icons.add_circle),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  'Add',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ],
                     )
